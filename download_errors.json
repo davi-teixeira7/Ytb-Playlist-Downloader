@@ -1,0 +1,8 @@
+[
+  {
+    "link": "",
+    "playlist": "",
+    "error_message": "",
+    "download": "yt-dlp -t mp3 --embed-metadata --embed-thumbnail https://music.youtube.com/watch?v="
+  }
+]
