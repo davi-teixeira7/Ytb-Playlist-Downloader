@@ -7,9 +7,8 @@ Small Bash helpers to download and organize YouTube Music playlists with yt-dlp,
 The primary action for a working setup is running the downloader script.
 
 1)  Put your YouTube Music playlist URLs in `links.json`.
-2)  **Activate the virtualenv** each session:
+2)  **Activate the Python Virtual Enviroment** for each session:
 
-<!-- end list -->
 
 ```bash
 source .venv/Scripts/activate   # on Windows Git Bash
@@ -18,14 +17,14 @@ source .venv/bin/activate       # on WSL/Linux/macOS
 
 3)  **Run the downloader**:
 
-<!-- end list -->
 
 ```bash
 bash download-playlists.sh
 ```
 
-   Check `download_errors.json` for any failed items; rerun the suggested command if needed.
-4\) When satisfied with the downloads, **compress everything** (optional):
+Check `download_errors.json` for any failed items; rerun the suggested command if needed (you may need to open the link manully for the url to update and work).
+
+4) When satisfied with the downloads, **compress everything** (optional):
 
 ```bash
 bash compress-playlists.sh
@@ -35,13 +34,12 @@ bash compress-playlists.sh
 
 -----
 
-## Setup (Command Order)
+## Setup
 
 Follow these steps in order to set up your environment (run from the project root):
 
-1)  Create the virtualenv (once):
+1)  Create the Python Virtual Enviroment:
 
-<!-- end list -->
 
 ```bash
 python -m venv .venv
@@ -49,7 +47,6 @@ python -m venv .venv
 
 2)  Install Python deps:
 
-<!-- end list -->
 
 ```bash
 pip install -r requirements.txt
@@ -64,7 +61,7 @@ pip install -r requirements.txt
 ## Dependencies
 
   - Bash shell (Git Bash/WSL/Unix) to run the scripts
-  - Python 3.10+ with a virtualenv at `.venv` and `pip install -r requirements.txt`
+  - Python 3.10+ with an vitual environment at `.venv` and `pip install -r requirements.txt`
   - `yt-dlp` + `yt-dlp-ejs` (needs a JS runtime such as `deno`, `node`, or `bun` for YouTube cipher solving)
   - `ffmpeg`/`ffprobe` for audio merging, embedding metadata, and thumbnails
   - `jq` for reading the playlist list from JSON
@@ -89,13 +86,18 @@ pip install -r requirements.txt
 ## Handling Errors (`download_errors.json`)
 
   - On failures, entries are appended with:
-      - `link`: playlist URL attempted
-      - `playlist`: folder name used locally
-      - `error_message`: last yt-dlp error line
-      - `download`: suggested manual command
+  ```bash
+   [
+      {
+         "link": "playlist URL attempted",
+         "playlist": "folder name used locally",
+         "error_message": "last yt-dlp error line",
+         "download": "suggested manual command"
+      }
+   ]
+  ```
   - Manual retry in Bash (copy the `download` value):
 
-<!-- end list -->
 
 ```bash
 yt-dlp -t mp3 --embed-metadata --embed-thumbnail "https://music.youtube.com/watch?v=VIDEO_ID"
