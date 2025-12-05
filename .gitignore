@@ -1,5 +1,10 @@
 *
-!README.md
-!compress-playlists.sh
-!LICENSE
+!compacted-folder/
 !.gitignore
+!compress-playlists.sh
+!download_errors.json
+!download-playlists.sh
+!LICENSE
+!links.json
+!README.md
+!requirements.txt
